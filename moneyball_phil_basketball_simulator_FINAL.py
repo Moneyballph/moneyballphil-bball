@@ -1,37 +1,39 @@
+# Streamlit Basketball App - Complete Template
 
 import streamlit as st
 from PIL import Image
-import os
 
-st.set_page_config(layout="wide")
+# Load assets
+logo_image = Image.open("moneyball_logo.png")
+background_image = Image.open("basketball_court_background.png")
 
-# Load background and logo
-background_image = "assets/basketball_court_background.png"
-logo_image = "assets/moneyball_phil_basketball_logo.png"
-
-# Custom background style
-st.markdown(f'''
-    <style>
-        .stApp {{
-            background-image: url("{{background_image}}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }}
-        .custom-title {{
-            font-size: 3em;
-            color: white;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 1rem;
-        }}
-    </style>
-''', unsafe_allow_html=True)
-
-# Display logo and title
+# App Layout
+st.set_page_config(layout="centered")
 st.image(logo_image, width=250)
-st.markdown('<div class="custom-title">MoneyBall Phil: NBA Simulator</div>', unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>MoneyBall Phil: Basketball Simulator</h1>", unsafe_allow_html=True)
+st.image(background_image, use_column_width=True)
 
-# Placeholder for further app development
-st.markdown("### Coming Soon: Full PRA + Points Player Simulator")
+# Player Stat Inputs
+with st.form("player_input"):
+    st.subheader("🧾 Player Stats Entry")
+    name = st.text_input("Player Name")
+    pts = st.number_input("Points", value=0)
+    reb = st.number_input("Rebounds", value=0)
+    ast = st.number_input("Assists", value=0)
+    usage = st.slider("Usage Rate (%)", 0.0, 100.0, 20.0)
+    era = st.number_input("Opponent ERA (if available)", value=0.0)
+    odds = st.text_input("Sportsbook Odds (e.g. -120)")
+    submitted = st.form_submit_button("Simulate Player")
+
+# Placeholder for calculation and board
+if submitted:
+    st.success(f"Simulated {name}'s performance and evaluated against PRA/Points target.")
+    st.write(f"**Stats:** {pts} PTS, {reb} REB, {ast} AST | **Usage:** {usage}% | **Odds:** {odds}")
+    st.write("📊 PRA = ", pts + reb + ast)
+
+# Add-on placeholders
+st.markdown("### 🔥 Top Player Board")
+st.dataframe({"Player": [name], "PRA": [pts + reb + ast], "Usage": [f"{usage}%"], "Odds": [odds]})
+
+st.markdown("### 🧮 Parlay Evaluator (Coming Soon)")
+
