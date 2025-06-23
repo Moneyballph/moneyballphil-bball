@@ -1,12 +1,17 @@
-# MoneyBall Phil Basketball App
 
-A Streamlit-based application for simulating NBA player prop outcomes (Points and PRA), building high-EV parlays, and evaluating player performance using advanced stats and defensive matchups.
+# MoneyBall Phil: Basketball Simulator
+
+This is the official basketball version of the MoneyBall Phil betting simulator app. It evaluates player props using advanced metrics, simulation models, and EV (Expected Value) filtering.
 
 ## Features
+- True hit probability for PRA and Points
+- Custom EV% model
+- Parlay builder with true vs implied odds
+- Position vs defense matchups
+- Top Player Board
 
-- 🔢 Player Stat Entry
-- 🧠 True Probability Simulator (Points & PRA)
-- 📈 EV% and Implied Odds Analyzer
-- 🔥 Top Player Board
-- 🎯 Parlay Evaluator
-- 🏀 Defensive Matchups by Position
+## Setup
+Run with Streamlit:
+```bash
+streamlit run moneyball_phil_basketball_simulator.py
+```
